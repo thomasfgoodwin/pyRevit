@@ -1,3 +1,3 @@
 """Tells a joke."""
 
-print("a funny joke")
+print("a funnier joke")
