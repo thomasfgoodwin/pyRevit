@@ -21,4 +21,4 @@ for wall in wall_collector:
         total_volume = total_volume + vol_param.AsDouble()
 
 # now that results are collected, print the total
-print("Total Volume of all walls is: {}".format(total_volume))
+print("Total Volume of all walls in model is: {}".format(total_volume))
