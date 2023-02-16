@@ -1,5 +1,5 @@
-"""Calculates total volume of all walls in the model."""
 
+__title__ = 'Associate a family with a Graphviz node'
 from Autodesk.Revit import DB
 
 
@@ -7,13 +7,18 @@ doc = __revit__.ActiveUIDocument.Document
 selection = __revit__.ActiveUIDocument.Selection
 
 selection = [doc.GetElement(x) for x in selection.GetElementIds()]
+
+t = DB.Transaction(doc, __title__)
+t.Start()
 for x in selection:
     node_parameter = x.LookupParameter('Node')
+    print(node_parameter.AsString())
+    node_parameter.Set('Set by script')
     print(node_parameter.AsString())
     for p in x.Parameters:
         if p.IsShared:
             print(p.Definition.Name, p.Id)
-
+t.Commit()
 
 # Creating collector instance and collecting all the walls from the model
 wall_collector = DB.FilteredElementCollector(doc)\
